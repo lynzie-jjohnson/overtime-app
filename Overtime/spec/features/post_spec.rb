@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 describe 'navigate' do
-  let(:user) {FactoryGirl.create(:user)}
+  let(:user) { FactoryGirl.create(:user) }
 
   let(:post) do
-    Post.create(date: Date.today, rationale: "Rationale", user_id: @user.id)
+    Post.create(date: Date.today, rationale: "Rationale", user_id: user.id)
   end
 
   before do
-    login_as(@user, :scope => :user)
+    login_as(user, :scope => :user)
   end
 
   describe 'index' do
@@ -57,10 +57,11 @@ describe 'navigate' do
       delete_user = FactoryGirl.create(:user)
       login_as(delete_user, :scope => :user)
 
-      post_to_delete = Post.create(date: Date.today, rationale: "asdfasdfasdf", user_id: delete_user.id)
+      post_to_delete = Post.create(date: Date.today, rationale: 'asdf', user_id: delete_user.id)
+
       visit posts_path
 
-      click_link("delete_post_#{@post.id}_from_index")
+      click_link("delete_post_#{post_to_delete.id}_from_index")
       expect(page.status_code).to eq(200)
     end
   end
@@ -107,7 +108,7 @@ describe 'navigate' do
       non_authorized_user = FactoryGirl.create(:non_authorized_user)
       login_as(non_authorized_user, :scope => :user)
 
-      visit edit_post_path(@edit_post)
+      visit edit_post_path(post)
 
       expect(current_path).to eq(root_path)
     end
