@@ -4,6 +4,7 @@ RSpec.describe AuditLog, type: :model do
   before do
     @audit_log = FactoryGirl.create(:audit_log)
   end
+end
 
   describe 'creation' do
     it 'can be properly created' do
