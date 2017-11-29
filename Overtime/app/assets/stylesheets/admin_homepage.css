@@ -11,9 +11,13 @@
   .homepage-block {
     background-color: rgba(61, 179, 157, 0.721);
     color: white;
-    margin: 15px;
+    margin: 42px 12px 42px 12px;
     padding: 15px;
     -webkit-border-radius: 1px;
     -moz-border-radius: 1px;
     border-radius: 1px;
+  }
+
+  .pending-details {
+    font-weight: 900;
   }
